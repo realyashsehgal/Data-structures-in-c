@@ -1,49 +1,41 @@
 #include <stdio.h>
-#include<conio.h>
-void selectionSort(int arr[], int size)
+#include <conio.h>
+int display(int *arr, int size)
 {
-
-    int key;
-
-    for (int i = 0; i < size - 1; i++)
+    int i;
+    for (i = 0; i < size; i++)
     {
-        key = i;
-        for (int j = i + 1; j < size; j++)
-        {
-
-            if (arr[key] > arr[j])
-            {
-                key = j;
-            }
-        }
-        int temp = arr[i];
-        arr[i] = arr[key];
-        arr[key] = temp;
-    }
-}
-
-void printArr(int arr[], int size)
-{
-
-    for (int i = 0; i < size; i++)
-    {
-
         printf("%d ", arr[i]);
     }
+    return 0;
 }
-
-void main()
+int selectionsort(int *arr, int size)
 {
-
-    int array[] = {12, 18, 5, 29, 4, 7};
-
-    printf("before:\n");
-
-    printArr(array, 6);
-
-    selectionSort(array, 6);
-
-    printf("\nafter:\n");
-
-    printArr(array, 6);
+    int begin, key, i, j,temp;
+    key = 0;
+    for (i = 0; i < size; i++)
+    {
+        for( j = i + 1; j < size ; j++)
+        {
+            if(arr[key] > arr[j])
+            {
+                key = j ;
+            }            
+        }
+        temp = arr[key];
+        arr[key] = arr[i];
+        arr[i] = temp;
+    }
+    return *arr;
+}
+int main()
+{
+    int arr[] = {98, 4, 56, 12, 144, 44};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    display(arr, size);
+    printf("sorting the given array using selection sort");
+    selectionsort(arr, size);
+    display(arr,size);
+    getch();
+    return 0;
 }
