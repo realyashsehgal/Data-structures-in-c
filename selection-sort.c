@@ -26,14 +26,14 @@ int selectionsort(int *arr, int size)
         arr[key] = arr[i];
         arr[i] = temp;
     }
-    return *arr;
+    return 0;
 }
 int main()
 {
     int arr[] = {98, 4, 56, 12, 144, 44};
     int size = sizeof(arr) / sizeof(arr[0]);
     display(arr, size);
-    printf("sorting the given array using selection sort");
+    printf("sorting the given array using selection sort\n");
     selectionsort(arr, size);
     display(arr,size);
     getch();
