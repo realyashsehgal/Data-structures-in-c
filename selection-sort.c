@@ -12,9 +12,9 @@ int display(int *arr, int size)
 int selectionsort(int *arr, int size)
 {
     int begin, key, i, j,temp;
-    key = 0;
     for (i = 0; i < size; i++)
     {
+    key = i;
         for( j = i + 1; j < size ; j++)
         {
             if(arr[key] > arr[j])
@@ -30,7 +30,7 @@ int selectionsort(int *arr, int size)
 }
 int main()
 {
-    int arr[] = {98, 4, 56, 12, 144, 44};
+    int arr[] = {6,4,2,9,20};
     int size = sizeof(arr) / sizeof(arr[0]);
     display(arr, size);
     printf("sorting the given array using selection sort\n");
