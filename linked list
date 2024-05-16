@@ -6,21 +6,211 @@ struct node
     int data;
     struct node *next;
 };
-struct node *head,*tail;
-int main ()
+struct node *head, *tail;
+int create_list(int item);
+int add_begin();
+int add_end();
+int add_specific();
+int delete_begin();
+int delete_end();
+int display();
+int main()
 {
     int choice;
-    int n,i;
+    int n, i, data;
     printf("Please enter the number of nodes you want in you linked list\n");
-    
-    while(choice != 8)
+    scanf("%d:", &n);
+    for (i = 0; i < n; i++)
+    {
+        printf("Please enter the data you want to insert\n");
+        scanf("%d", &data);
+        create_list(data);
+    }
+
+    while (choice != 8)
     {
         printf("Please enter the choice from given\n");
-        printf("1.Add begin\n2.Add end\n3.Add specific\n4.delete beg\n5.delete end\n6.Delete specific\n7.display\n8.EXIT");
-        scanf("%d",&choice);
-        switch(choice)
+        printf("1.Add begin\n2.Add end\n3.Add specific\n4.delete beg\n5.delete end\n6.Delete specific\n7.display\n8.EXIT\n\n\n");
+        scanf("%d", &choice);
+        switch (choice)
         {
+        case 1:
+            add_begin();
+            break;
+        case 2:
+            add_end();
+            break;
+        case 3:
+            add_specific();
+            break;
+        case 4:
+            delete_begin();
+            break;
+        case 5:
+            delete_end();
+            break;
+        case 7:
+            display();
+            printf("display");
+            break;
+        case 8:
+            exit(0);
+        default:
+            printf("Invalid input");
+            break;
         }
-        getch();
+    }
+    getch();
+    return 0;
+}
+int create_list(int item)
+{
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    if (ptr == NULL)
+    {
+        printf("NULL");
+    }
+    else
+    {
+        ptr->data = item;
+        ptr->next = NULL;
+        if (head == NULL)
+        {
+            tail = head = ptr;
+        }
+        else
+        {
+            tail->next = ptr;
+            tail = ptr;
+        }
+    }
+    return 0;
+}
+int add_begin()
+{
+    int item;
+    printf("Please enter the data you want to insert in beginning\n");
+    scanf("%d", &item);
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = item;
+    if (ptr == NULL)
+    {
+        printf("overflow\n");
+    }
+    else
+    {
+        if (head == NULL)
+        {
+            head = tail = ptr;
+            ptr->next = NULL;
+        }
+        else
+        {
+            ptr->next = head;
+            head = ptr;
+        }
+    }
+    return 0;
+}
+int add_end()
+{
+    int item;
+    printf("Please enter the number you want to insert in the end\n");
+    scanf("%d", &item);
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = item;
+    ptr->next = NULL;
+    if (ptr == NULL)
+    {
+        printf("OVERFLOW\n");
+    }
+    else
+    {
+        if (head == NULL)
+        {
+            head = tail = ptr;
+        }
+        else
+        {
+            tail->next = ptr;
+            tail = ptr;
+        }
+    }
+    return 0;
+}
+int add_specific()
+{
+    int i, n, item;
+    printf("Please enter the position you want to insert in the linked list\n");
+    scanf("%d", &n);
+    printf("\nPleas enter the number you want to insert in the lsit\n");
+    scanf("%d", &item);
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
+    temp = head;
+    ptr->data = item;
+    if (ptr == NULL)
+    {
+        printf("OVERFLOW\n");
+    }
+    else
+    {
+        if (head == NULL)
+        {
+            ptr->next = NULL;
+            head = tail = ptr;
+        }
+        else
+        {
+            for (i = 2; i < n; i++)
+            {
+                temp = temp->next;
+                if (temp == NULL)
+                {
+                    printf("this position does not exist in this list\n");
+                }
+            }
+            ptr->next = temp->next;
+            temp->next = ptr;
+        }
+    }
+    return 0;
+}
+int delete_begin()
+{
+    struct node *ptr = (struct node*)malloc(sizeof(struct node));
+    ptr = head;
+    if(head == NULL)
+    {
+        printf("the list does not have any node\n");
+    }
+    else
+    {
+        head = ptr->next;
+        free(ptr);
+    }
+    return 0;
+}
+int delete_end()
+{
+    struct noed *ptr = (struct node *)malloc(sizeof(struct node));
+    ptr = head;
+}
+int display()
+{
+    struct node *ptr;
+    ptr = head;
+    if (ptr == NULL)
+    {
+        printf("The given linked list is empty\n");
+    }
+    else
+    {
+        while (ptr != NULL)
+        {
+            printf("%d->", ptr->data);
+            ptr = ptr->next;
+        }
+        printf("NULL\n");
     }
 }
