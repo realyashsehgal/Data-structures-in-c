@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *head,*tail;
+int main ()
+{
+    int choice;
+    int n,i;
+    printf("Please enter the number of nodes you want in you linked list\n");
+    
+    while(choice != 8)
+    {
+        printf("Please enter the choice from given\n");
+        printf("1.Add begin\n2.Add end\n3.Add specific\n4.delete beg\n5.delete end\n6.Delete specific\n7.display\n8.EXIT");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+        }
+        getch();
+    }
+}
